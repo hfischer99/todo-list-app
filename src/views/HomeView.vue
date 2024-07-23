@@ -48,26 +48,6 @@ export default {
         { id: 3, name: "entertainment", color: "#FFCECD" },
         { id: 4, name: "family", color: "#DAF2D7" },
       ],
-      tasks: [
-        {
-          id: 1,
-          title: "The first task title",
-          description:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
-        },
-        {
-          id: 2,
-          title: "The second task title",
-          description:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr,",
-        },
-        {
-          id: 3,
-          title: "The third task title",
-          description:
-            "Lorem Ipsum dolor sit amet, consetetur sadipscing elit,",
-        },
-      ],
     };
   },
 
@@ -76,7 +56,21 @@ export default {
     const newTaskTitle = ref("");
 
     const tasks = ref([
-      // ... tarefas existentes ...
+      {
+        id: 1,
+        title: "The first task title",
+        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+      },
+      {
+        id: 2,
+        title: "The second task title",
+        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr,",
+      },
+      {
+        id: 3,
+        title: "The third task title",
+        description: "Lorem Ipsum dolor sit amet, consetetur sadipscing elit,",
+      },
     ]);
 
     const addTask = () => {
@@ -84,7 +78,8 @@ export default {
         const newTask = {
           id: tasks.value.length + 1, // ou gerar um ID único de outra forma
           title: newTaskTitle.value,
-          description: "", // Adicione uma descrição se necessário
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus sit amet felis vel pharetra. Proin mollis tortor sit amet aliquam interdum. Phasellus vestibulum scelerisque dui, in mattis neque sagittis quis. Donec non eros tempus, ullamcorper erat in, volutpat eros.", // Adicione uma descrição se necessário
           completed: false,
         };
         tasks.value.push(newTask);
