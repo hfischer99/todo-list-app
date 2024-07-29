@@ -1,10 +1,13 @@
-// jest.config.js
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node",
-  moduleFileExtensions: ["js", "jsx", "ts", "tsx", "vue"],
+  preset: "ts-jest/presets/js-with-babel",
+  moduleFileExtensions: ["js", "json", "vue"],
   transform: {
     "^.+\\.vue$": "vue-jest",
-    "^.+\\.[tj]sx?$": "ts-jest",
+    "^.+\\.js$": "babel-jest",
+  },
+  transformIgnorePatterns: ["/node_modules/(?!(string-width)/)"],
+  testMatch: ["**/tests/unit/**/*.spec.js"],
+  moduleNameMapper: {
+    "\\.(css|less|sass|scss)$": "jest-transform-stub",
   },
 };

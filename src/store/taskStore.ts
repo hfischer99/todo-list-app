@@ -23,6 +23,5 @@ export const useTaskStore = defineStore("taskStore", {
     removeTask(task: Task) {
       this.tasks = this.tasks.filter((t) => t.id !== task.id);
     },
-    // Adicione outras ações conforme necessário
   },
 });
