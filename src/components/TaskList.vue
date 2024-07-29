@@ -32,12 +32,25 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
+interface Task {
+  id: number;
+  title: string;
+  description: string;
+  completed: boolean;
+  colors: string[];
+}
+
+export default defineComponent({
   props: {
-    tasks: Array,
+    tasks: {
+      type: Array as PropType<Task[]>,
+      required: true,
+    },
   },
-};
+});
 </script>
 
 <style scoped>

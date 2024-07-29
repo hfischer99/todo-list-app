@@ -16,11 +16,25 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+interface Category {
+  id: number;
+  name: string;
+  color: string;
+}
+
+export default defineComponent({
   props: {
-    categories: Array,
-    hideTasks: Boolean,
+    categories: {
+      type: Array as () => Category[],
+      required: true,
+    },
+    hideTasks: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -32,14 +46,15 @@ export default {
       this.$emit("toggle-hide-tasks");
     },
   },
-};
+});
 </script>
 
 <style scoped>
 .sidebar {
   flex: 1;
-  justify-items: left;
   padding-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .category {
@@ -63,5 +78,46 @@ export default {
   font-family: Arial, sans-serif;
   color: #bfbcb1;
   margin: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    padding-left: 10px;
+  }
+
+  .color-dot {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
+  .category {
+    margin-bottom: 5px;
+  }
+
+  .hideTasks {
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding-left: 5px;
+  }
+
+  .color-dot {
+    width: 15px;
+    height: 15px;
+    margin-right: 3px;
+  }
+
+  .category {
+    margin-bottom: 3px;
+  }
+
+  .hideTasks {
+    padding: 5px 0;
+  }
 }
 </style>

@@ -46,11 +46,33 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
+interface Task {
+  id: number;
+  title: string;
+  description: string;
+  completed: boolean;
+  colors: string[];
+}
+
+interface Category {
+  id: number;
+  name: string;
+  color: string;
+}
+
+export default defineComponent({
   props: {
-    task: Object,
-    categories: Array,
+    task: {
+      type: Object as PropType<Task>,
+      required: false,
+    },
+    categories: {
+      type: Array as PropType<Category[]>,
+      required: true,
+    },
   },
   data() {
     return {
@@ -59,13 +81,13 @@ export default {
       taskCompleted: this.task ? this.task.completed : false,
       selectedCategoryIds: this.task
         ? this.categories
-            .filter((category) => this.task.colors.includes(category.color))
+            .filter((category) => this.task!.colors.includes(category.color))
             .map((category) => category.id)
         : [],
     };
   },
   methods: {
-    toggleCategorySelection(categoryId) {
+    toggleCategorySelection(categoryId: number) {
       if (this.selectedCategoryIds.includes(categoryId)) {
         this.selectedCategoryIds = this.selectedCategoryIds.filter(
           (id) => id !== categoryId
@@ -79,8 +101,8 @@ export default {
         .filter((category) => this.selectedCategoryIds.includes(category.id))
         .map((category) => category.color);
 
-      const taskData = {
-        ...this.task,
+      const taskData: Task = {
+        ...this.task!,
         title: this.taskTitle,
         description: this.taskDescription,
         completed: this.taskCompleted,
@@ -89,7 +111,7 @@ export default {
       this.$emit("save", taskData);
     },
   },
-};
+});
 </script>
 
 <style scoped>
