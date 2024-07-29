@@ -143,7 +143,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .modal-header span {
@@ -152,6 +152,7 @@ export default defineComponent({
 }
 
 .modal-body {
+  margin: 20px;
   display: flex;
   flex-direction: column;
 }
